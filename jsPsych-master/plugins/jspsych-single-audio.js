@@ -150,11 +150,18 @@ jsPsych.plugins["single-audio"] = (function() {
 
     // start audio
     if(context !== null){
-      startTime = context.currentTime + 0.1;
+      startTime = context.currentTime;
       source.start(startTime);
     } else {
       audio.play();
     }
+
+    // send hardware trigger
+    jsPsych.pluginAPI.hardware({
+      target: "parallel",
+      action: "trigger",
+      payload: 255
+    });
 
     // start the response listener
     if(context !== null) {

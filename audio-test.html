@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script src="jsPsych-master/jspsych.js"></script>
+  <script src="jsPsych-master/plugins/jspsych-single-stim.js"></script>
+  <script src="jsPsych-master/plugins/jspsych-single-audio.js"></script>
+  <link rel="stylesheet" href="jsPsych-master/css/jspsych.css"></script>
+  <style>
+    html { background-color: #000; color: #fff; }
+    .optical { width: 500px; height: 500px; background-color: #aaa;}
+  </style>
+</head>
+<body>
+</body>
+<script>
+
+var ready = {
+  type: 'single-stim',
+  stimulus: '<p>Press enter to start</p>',
+  choices: ['enter'],
+  is_html: true,
+  timing_post_trial: 1000,
+}
+
+var trial = {
+  timeline: [{
+    type: 'single-audio',
+    stimulus: 'tone.wav',
+    trial_ends_after_audio: true,
+    choices: jsPsych.NO_KEYS,
+    timing_post_trial: 500
+  }],
+  repetitions: 100
+}
+
+jsPsych.init({
+  timeline: [ready, trial]
+});
+</script>
+</html>
